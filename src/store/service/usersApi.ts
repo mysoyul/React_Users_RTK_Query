@@ -8,7 +8,13 @@ export const usersApi = createApi({
     }),
     tagTypes: ['Users'],
     endpoints: (builder) => ({
-
+        getUsers: builder.query<User[], void>({
+            query: () => 'users',
+            providesTags: ['Users'],
+        }),
     }),
 });
+export const {
+    useGetUsersQuery
+} = usersApi;    
 
