@@ -22,7 +22,7 @@ export const usersApi = createApi({
                 method: 'PUT',
                 body: data,
             }),
-            //invalidatesTags: ['Users']
+            invalidatesTags: ['Users']
         }),
     }),
 });
