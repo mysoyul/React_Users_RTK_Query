@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import Button from "components/Button";
 import User from "types/User";
-import { useGetUsersQuery } from "store/service/usersApi";
+import { useGetUsersQuery, useDeleteUserMutation } from "store/service/usersApi";
 import LoadingSpinner from "components/LoadingSpinner";
 // import { RootState } from 'store';
 // import { deleteUser } from "store/slice/usersSlice"
@@ -20,6 +20,9 @@ const UserList = () => {
 
   const { data, isError, isLoading } = useGetUsersQuery();
   const users = data as User[];
+
+  const [deleteUser] = useDeleteUserMutation();
+
   if( isLoading ) {
     return <div><LoadingSpinner /></div>
   }
@@ -30,6 +33,7 @@ const UserList = () => {
 
   const handleRemoveUser = (id: string) => {
     // dispatch(deleteUser({ id } as User));
+    deleteUser(id);
   }
 
   const renderCard = () =>

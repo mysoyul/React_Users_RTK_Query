@@ -19,6 +19,7 @@ type InputProps = {
           {...inputProps}
           onChange={onChange}
           value={value}
+          required
         />
       </div>
     );
