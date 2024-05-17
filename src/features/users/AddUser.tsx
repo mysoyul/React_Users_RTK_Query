@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-import { useDispatch } from "react-redux";
+// import { v4 as uuidv4 } from "uuid";
+// import { useDispatch } from "react-redux";
 
 import Button from "components/Button";
 import TextField from "components/TextField";
 import User from "types/User";
-import { addUser } from "store/slice/usersSlice"
-import { AppDispatch } from "store";
+// import { addUser } from "store/slice/usersSlice"
+// import { AppDispatch } from "store";
+import { useAddUserMutation } from "store/service/usersApi"
 
 const AddUser = () => {
   const [values, setValues] = useState<User>({
@@ -16,15 +17,19 @@ const AddUser = () => {
   });
 
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
+  // const dispatch = useDispatch<AppDispatch>();
+  const [addUser] = useAddUserMutation();
 
   const handleAddUser = () => {
-    dispatch(addUser({
-      id: uuidv4(),
+    // dispatch(addUser({
+    //   id: uuidv4(),
+    //   name: values.name,
+    //   email: values.email
+    // }));
+    addUser({
       name: values.name,
       email: values.email
-    }));
-    setValues({ name: '', email: '' });
+    });	
     navigate('/');
   }
 
