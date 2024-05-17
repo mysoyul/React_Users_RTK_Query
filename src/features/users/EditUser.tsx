@@ -12,8 +12,12 @@ const EditUser = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  const usersState = useSelector((state: RootState) => state.users)
-  const users = usersState.userList;
+  // const usersState = useSelector((state: RootState) => state.users)
+  // const users = usersState.userList;
+  const users: User[] = [
+      { id: "1", name: "Jane", email: "jane@email.com" },
+      { id: "2", name: "John", email: "john@email.com" },
+    ];
   const existingUser = users.find(user => user.id === params.id);
   const { name, email } = existingUser as User;
   const [values, setValues] = useState<User>({
